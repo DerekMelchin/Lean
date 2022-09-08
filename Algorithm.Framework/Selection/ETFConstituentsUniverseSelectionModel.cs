@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-
+​
 using System;
 using System.Collections.Generic;
 using Python.Runtime;
 using QuantConnect.Data.UniverseSelection;
-
+​
 namespace QuantConnect.Algorithm.Framework.Selection
 {
     /// <summary>
@@ -25,11 +25,11 @@ namespace QuantConnect.Algorithm.Framework.Selection
     /// </summary>
     public class ETFConstituentsUniverseSelectionModel : UniverseSelectionModel
     {
-        private Symbol _etfSymbol;
-        private UniverseSettings _universeSettings;
-        private Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> _universeFilterFunc;
+        private readonly Symbol _etfSymbol;
+        private readonly UniverseSettings _universeSettings;
+        private readonly Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> _universeFilterFunc;
         private Universe _universe;
-
+​
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -38,14 +38,26 @@ namespace QuantConnect.Algorithm.Framework.Selection
         /// <param name="universeFilterFunc">Function to filter universe results</param>
         public ETFConstituentsUniverseSelectionModel(
             Symbol etfSymbol,
-            UniverseSettings universeSettings = null,
-            Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> universeFilterFunc = null)
+            UniverseSettings universeSettings,
+            Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> universeFilterFunc)
         {
             _etfSymbol = etfSymbol;
             _universeSettings = universeSettings;
             _universeFilterFunc = universeFilterFunc;
         }
-
+​
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
+        /// </summary>
+        /// <param name="etfSymbol">Symbol of the ETF to get constituents for</param>
+        /// <param name="universeFilterFunc">Function to filter universe results</param>
+        public ETFConstituentsUniverseSelectionModel(
+            Symbol etfSymbol,
+            Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> universeFilterFunc)
+            : this(etfSymbol, null, universeFilterFunc)
+        {
+        }
+​
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -55,7 +67,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             : this(etfSymbol, universeSettings, default(Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>>))
         {
         }
-
+​
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -69,7 +81,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             this(etfSymbol, universeSettings, universeFilterFunc.ConvertPythonUniverseFilterFunction<ETFConstituentData>())
         {
         }
-
+​
         /// <summary>
         /// Creates a new ETF constituents universe using this class's selection function
         /// </summary>
