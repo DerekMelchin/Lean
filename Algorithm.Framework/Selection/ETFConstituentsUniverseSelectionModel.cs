@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-​
+
 using System;
 using System.Collections.Generic;
 using Python.Runtime;
 using QuantConnect.Data.UniverseSelection;
-​
+
 namespace QuantConnect.Algorithm.Framework.Selection
 {
     /// <summary>
@@ -29,7 +29,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
         private readonly UniverseSettings _universeSettings;
         private readonly Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>> _universeFilterFunc;
         private Universe _universe;
-​
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -45,7 +45,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             _universeSettings = universeSettings;
             _universeFilterFunc = universeFilterFunc;
         }
-​
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -57,7 +57,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             : this(etfSymbol, null, universeFilterFunc)
         {
         }
-​
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -67,7 +67,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             : this(etfSymbol, universeSettings, default(Func<IEnumerable<ETFConstituentData>, IEnumerable<Symbol>>))
         {
         }
-​
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ETFConstituentsUniverseSelection"/> class
         /// </summary>
@@ -81,7 +81,7 @@ namespace QuantConnect.Algorithm.Framework.Selection
             this(etfSymbol, universeSettings, universeFilterFunc.ConvertPythonUniverseFilterFunction<ETFConstituentData>())
         {
         }
-​
+        
         /// <summary>
         /// Creates a new ETF constituents universe using this class's selection function
         /// </summary>
