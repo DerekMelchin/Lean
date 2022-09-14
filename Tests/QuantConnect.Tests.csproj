@@ -32,6 +32,10 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
+    <None Remove="RegressionAlgorithms\Test_ETFConstituentsUniverseSelectionModel_CSharp.py" />
+    <None Remove="RegressionAlgorithms\Test_ETFConstituentsUniverseSelectionModel_Python.py" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="QuantConnect.pythonnet" Version="2.0.17" />
     <PackageReference Include="Accord" Version="3.6.0" />
     <PackageReference Include="Accord.Math" Version="3.6.0" />
@@ -53,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Common\Properties\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
+    <Content Include="RegressionAlgorithms\Test_ETFConstituentsUniverseSelectionModel_CSharp.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RegressionAlgorithms\Test_ETFConstituentsUniverseSelectionModel_Python.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Research\RegressionScripts\Test_QuantBookIndicator.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
