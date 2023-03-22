@@ -29,3 +29,4 @@ class RsiAlphaModelFrameworkRegressionAlgorithm(BaseFrameworkRegressionAlgorithm
         consolidator_count = sum([s.Consolidators.Count for s in self.SubscriptionManager.Subscriptions])
         if consolidator_count > 0:
             raise Exception(f"The number of consolidators should be zero. Actual: {consolidator_count}")
+
